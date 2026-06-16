@@ -11,6 +11,18 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <title>321 夫妻成长营</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="国度321空中团契">
+<meta property="og:title" content="321 夫妻成长营・爱的小家">
+<meta property="og:description" content="把营会的学习带回家，天天操练，活出基督的爱。点一下就能开始使用。">
+<meta property="og:image" content="https://spch321-sudo.github.io/321couples-sc/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta property="og:url" content="https://spch321-sudo.github.io/321couples-sc/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="321 夫妻成长营・爱的小家">
+<meta name="twitter:description" content="把营会的学习带回家，天天操练，活出基督的爱。">
+<meta name="twitter:image" content="https://spch321-sudo.github.io/321couples-sc/icon-512.png">
 <style>
   :root{
     --rose:#B0345A;      /* 主玫瑰 */
@@ -42,15 +54,23 @@
   }
   /* ===== 品牌列 ===== */
   .brandbar{
-    position:sticky;top:0;z-index:50;
+    position:sticky;top:0;z-index:50;transition:padding .25s ease;
     background:linear-gradient(135deg,var(--rose) 0%,#92274A 100%);
     color:#fff;
     padding:calc(env(safe-area-inset-top) + 12px) 18px 12px;
     box-shadow:0 2px 12px rgba(146,39,74,.28);
   }
-  .brandbar .dove{font-size:15px;opacity:.92;letter-spacing:.5px;}
-  .brandbar .apptitle{font-size:25px;font-weight:800;letter-spacing:1px;margin-top:2px;display:flex;align-items:baseline;gap:8px;}
-  .brandbar .apptitle small{font-size:14px;font-weight:500;opacity:.85;letter-spacing:2px;}
+  .brandbar .dove{font-size:15px;opacity:.92;letter-spacing:.5px;max-height:26px;overflow:hidden;transition:max-height .25s ease,opacity .2s ease,margin .25s ease;}
+  .brandbar .apptitle{font-size:25px;font-weight:800;letter-spacing:1px;margin-top:2px;display:flex;align-items:baseline;gap:8px;transition:font-size .25s ease,gap .25s ease;}
+  .brandbar .apptitle small{font-size:14px;font-weight:500;opacity:.85;letter-spacing:2px;transition:font-size .25s ease,opacity .2s ease,max-width .25s ease;}
+  .brandbar.collapsed{padding-top:calc(env(safe-area-inset-top) + 6px);padding-bottom:7px;}
+  .brandbar.collapsed .dove{max-height:0;opacity:0;margin-bottom:0;}
+  .brandbar.collapsed .apptitle{font-size:18px;gap:0;}
+  .brandbar.collapsed .apptitle small{font-size:0;opacity:0;max-width:0;letter-spacing:0;}
+  .brandbar{cursor:pointer;}
+  .brandbar .bcaret{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;}
+  .brandbar .bcg{color:#fff;font-size:18px;line-height:1;display:block;transition:transform .25s ease;}
+  .brandbar.collapsed .bcg{transform:rotate(180deg);}
 
   /* ===== 页面容器 ===== */
   .page{display:none;padding:18px 16px 8px;max-width:680px;margin:0 auto;animation:fade .35s ease;}
@@ -2750,6 +2770,7 @@ renderFollowupList();
 
 /* ============ PWA 离线注册 ============ */
 if('serviceWorker' in navigator){
+  (function(){var brand=document.querySelector('.brandbar');if(!brand)return;var caret=document.createElement('div');caret.className='bcaret';caret.setAttribute('aria-hidden','true');caret.innerHTML='<span class="bcg">\u2304</span>';brand.appendChild(caret);var KEY='brandCollapsed';try{if(localStorage.getItem(KEY)==='1')brand.classList.add('collapsed');}catch(e){}brand.addEventListener('click',function(){var c=brand.classList.toggle('collapsed');try{localStorage.setItem(KEY,c?'1':'0');}catch(e){}});})();
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
 
