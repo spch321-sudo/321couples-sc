@@ -1,5 +1,5 @@
 /* 321 夫妻成長營 — Service Worker */
-const CACHE = 'couples-321-v23';
+const CACHE = 'couples-321-v24';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png', './icon-512-maskable.png'];
 
 self.addEventListener('install', e => {
