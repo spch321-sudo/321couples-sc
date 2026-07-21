@@ -624,6 +624,51 @@
   .ringcard .rc-medal .spark{position:absolute;pointer-events:none;color:#FFE58C;font-size:17px;line-height:1;
     text-shadow:0 0 4px rgba(255,220,120,.95);animation:rcSparkPop .9s ease-out forwards;z-index:6;}
 
+
+  /* ===== 小智 AI + 真人朗讀 ===== */
+  .xz-fab{position:fixed;left:14px;bottom:calc(env(safe-area-inset-bottom) + 74px);z-index:70;display:flex;align-items:center;gap:7px;
+    background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border:none;border-radius:999px;
+    padding:10px 16px 10px 13px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;
+    box-shadow:0 8px 22px rgba(150,40,80,.4);-webkit-tap-highlight-color:transparent;}
+  .xz-fab .xzf-ic{font-size:18px;}
+  .xz-fab:active{transform:scale(.96);}
+  .xz-mask{position:fixed;inset:0;z-index:80;background:rgba(60,20,35,.5);backdrop-filter:blur(2px);
+    display:none;align-items:flex-end;justify-content:center;}
+  .xz-mask.on{display:flex;}
+  .xz-panel{width:100%;max-width:560px;height:88vh;background:linear-gradient(180deg,#FFF7F2,#FDEEF0);
+    border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 30px rgba(120,30,60,.25);}
+  .xz-head{display:flex;align-items:center;gap:11px;padding:14px 16px;background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;}
+  .xz-ava{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:21px;flex:0 0 auto;}
+  .xz-hname{font-size:17px;font-weight:900;}
+  .xz-hrole{font-size:12px;opacity:.9;margin-top:1px;}
+  .xz-x{margin-left:auto;background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;font-family:inherit;}
+  .xz-voicebar{display:flex;align-items:center;gap:7px;padding:8px 14px;background:#FBE4E9;border-bottom:1px solid #F3CCD6;flex-wrap:wrap;}
+  .xz-voicebar .vlbl{font-size:12px;font-weight:800;color:#9B2D50;}
+  .xz-vbtn{border:1px solid #E3A9BA;background:#fff;color:#9B2D50;border-radius:999px;padding:4px 11px;font-size:12.5px;font-weight:700;font-family:inherit;cursor:pointer;}
+  .xz-vbtn.on{background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border-color:#9B2D50;}
+  .xz-body{flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch;}
+  .xz-msg{display:flex;gap:9px;margin-bottom:13px;align-items:flex-start;}
+  .xz-msg.u{flex-direction:row-reverse;}
+  .xz-b{max-width:80%;padding:10px 13px;border-radius:15px;font-size:15px;line-height:1.66;white-space:pre-wrap;word-break:break-word;}
+  .xz-msg.a .xz-b{background:#fff;color:#3a2630;border:1px solid #F0D3DB;border-top-left-radius:5px;}
+  .xz-msg.u .xz-b{background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border-top-right-radius:5px;}
+  .xz-mava{width:30px;height:30px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:16px;background:#F5D9E1;}
+  .xz-msg.u .xz-mava{background:#EBC7D2;}
+  .xz-speak{margin-top:6px;display:inline-flex;align-items:center;gap:4px;background:#FBE4E9;border:1px solid #E3A9BA;color:#9B2D50;
+    border-radius:999px;padding:3px 10px;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;}
+  .xz-speak.playing{background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border-color:#9B2D50;}
+  .xz-cats{display:flex;flex-wrap:wrap;gap:7px;margin:2px 0 12px;}
+  .xz-cat{border:1px solid #E3A9BA;background:#fff;color:#9B2D50;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;}
+  .xz-cat.active{background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border-color:#9B2D50;}
+  .xz-quicks{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
+  .xz-quick{text-align:left;border:1px solid #F0D3DB;background:#fff;color:#5a3240;border-radius:12px;padding:9px 12px;font-size:14px;font-family:inherit;cursor:pointer;line-height:1.5;}
+  .xz-quick:active{background:#FBE4E9;}
+  .xz-typing{font-size:14px;color:#9B2D50;padding:4px 6px;}
+  .xz-foot{display:flex;gap:8px;padding:10px 12px;background:#fff;border-top:1px solid #F0D3DB;}
+  .xz-input{flex:1;border:1px solid #E3A9BA;border-radius:999px;padding:10px 15px;font-size:15px;font-family:inherit;outline:none;}
+  .xz-send{background:linear-gradient(135deg,#C9426B,#9B2D50);color:#fff;border:none;border-radius:999px;padding:0 18px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;}
+  .xz-note{font-size:11.5px;color:#a98;text-align:center;padding:6px 12px 10px;background:#fff;}
+
 </style>
 </head>
 <body>
@@ -3053,6 +3098,155 @@ if('serviceWorker' in navigator){
   (function(){var brand=document.querySelector('.brandbar');if(!brand)return;var caret=document.createElement('div');caret.className='bcaret';caret.setAttribute('aria-hidden','true');caret.innerHTML='<span class="bcg">\u2304</span>';brand.appendChild(caret);var KEY='brandCollapsed';try{if(localStorage.getItem(KEY)==='1')brand.classList.add('collapsed');}catch(e){}brand.addEventListener('click',function(){var c=brand.classList.toggle('collapsed');try{localStorage.setItem(KEY,c?'1':'0');}catch(e){}});})();
   window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
+
+</script>
+
+<script>
+/* ============ 小智 AI 婚姻陪伴員 + 真人朗讀（Azure）============ */
+(function(){
+  "use strict";
+  var XZ_ENDPOINT="https://xiaozhi-proxy.spch321.workers.dev";
+  var XZ_MODEL="claude-sonnet-4-6";
+  var TTS_ENDPOINT="https://azure-tts.spch321.workers.dev";
+  var TTS_VOICES={"yunfan": {"name": "zh-CN-Yunfan:DragonHDLatestNeural", "label": "云帆"}, "xiaozhen": {"name": "zh-CN-Xiaochen:DragonHDLatestNeural", "label": "晓蓁"}, "yunjhe": {"name": "zh-TW-YunJheNeural", "label": "云哲"}};
+  var VOICE_ORDER=["yunfan", "xiaozhen", "yunjhe"];
+  var XZ_VOICE="yunfan";                 /* 小智回覆預設聲音 key */
+  var SPEECH_LANG="zh-CN";           /* 瀏覽器備援語言 */
+  var XZ_TOPICS=[{"c": "婚姻异象与根基", "qs": ["神设立婚姻的心意到底是什么？", "为什么说「先生命、再关系、后事工」？", "婚姻要建立在什么根基上才稳固？", "三股合成的绳子，跟我们的婚姻有什么关系？", "夫妻如何一起立定婚姻的异象？", "什么是「建立属神的体系」在家中的样子？", "我们的婚姻可以荣耀神吗？怎么做？", "为什么婚姻不是为了让我快乐，而是使我圣洁？", "如何让耶稣成为我们婚姻的第三者（作王）？", "结婚多年失去初衷，如何重寻异象？", "夫妻同心可以带来什么祝福？", "如何为我们的婚姻写下共同的使命宣言？", "婚姻遇到风浪时，根基如何帮助我们站稳？", "为什么「焦点在耶稣」能保守婚姻？", "如何把「321理念」落实在婚姻里？", "婚姻的最终目的是什么？", "如何看待「两人成为一体」的奥秘？", "夫妻要一起建立哪些属灵的习惯？", "如何让家成为神国的领土？", "求神坚立我们的婚姻，可以怎么祷告？"]}, {"c": "谦卑无己的生命（第一金环）", "qs": ["什么是「无己」的生命？跟婚姻有什么关系？", "为什么说「有己」是婚姻问题的根源？", "如何在婚姻中脱下旧人、穿上新人？", "骄傲怎么悄悄破坏夫妻关系？", "「谦卑战胜骄傲」在吵架时怎么运用？", "我很难认错，如何操练谦卑？", "无己是不是要我一味委屈自己？", "如何分辨「舍己」和「无己」？", "老我常常浮现，如何天天治死它？", "为什么「无己才能合一」？", "如何让耶稣在我里面活、而不是我作主？", "总觉得都是对方的错，怎么看见自己？", "谦卑和软弱有什么不同？", "如何在小事上就选择谦卑无己？", "无己的生命会为婚姻带来什么改变？", "怎么放下「我是对的」这个执着？", "如何求圣灵帮助我活出无己？", "配偶还没改变，我先无己会不会吃亏？", "谦卑如何成为我们婚姻复兴的钥匙？", "求神给我无己的心，怎么祷告？"]}, {"c": "落实321于婚姻（第二金环）", "qs": ["如何在婚姻中「让耶稣作王」？", "夫妻怎么一起操练「用心不用脑」？", "「让耶稣得着一切荣耀」在家庭怎么活出来？", "三个基础（榜样、准則、引导）如何用在婚姻？", "如何以耶稣为我们夫妻的榜样？", "圣经如何成为我们婚姻的准則？", "怎么一起寻求并顺从圣灵的引导？", "改变观念的八步骤如何用在婚姻更新？", "如何从「人的观点」转为「神的观点」看配偶？", "「改变从我开始」在婚姻里是什么意思？", "夫妻价值观不同，如何用321对齐？", "怎么把321变成我们每天的生活方式？", "当我想控制对方时，如何回到让神作神？", "如何操练「离开本位、放下权力」？", "焦点跑到自己或环境时，如何拉回耶稣？", "321如何帮助我们反敗为胜？", "怎么带着另一半一起认识321？", "落实321后，婚姻会有什么不一样？", "如何在冲突当下想起321？", "求神帮助我们天天落实321，怎么祷告？"]}, {"c": "看听想讲行（第三金环）", "qs": ["什么是用耶稣的生命去「看」配偶？", "如何用主的眼光看待另一半的软弱？", "怎么练习「听」的功课，而不急着回应？", "我很容易打断对方，如何改善？", "如何在开口前先让圣灵掌管我的「想」？", "负面念头一起来就翻旧帐，怎么办？", "如何让我「讲」出来的话带出生命？", "说话容易伤人，如何让舌头被主管理？", "怎么把「行動」化为爱的表达？", "知道却做不到，如何从知道到行出来？", "如何在看听想讲行每一步都无己？", "冲動说出后悔的话，如何补救？", "怎么用赞美代替批评？", "如何学会欣赏而不是挑剔？", "看到对方的缺点就烦躁，如何转念？", "如何让我们的对话充满恩典？", "怎么练习「慢慢地说、快快地听」？", "负面情绪上来时，如何先停一下再回应？", "如何用行動修复伤了对方的话？", "求神管理我的看听想讲行，怎么祷告？"]}, {"c": "夫妻合一（第四金环）", "qs": ["「二人成为一体」到底是什么意思？", "为什么「无己才能合一」？", "我们个性差很多，如何走向合一？", "合一是不是要一个人配合另一个人？", "如何在决定上达成同心？", "夫妻灵里合一该怎么操练？", "身体、心思、灵里的合一有什么不同？", "总是各过各的，如何重新连结？", "如何在差异中彼此欣赏、互补？", "为了小事就分裂，如何回到合一？", "怎么一起同心祷告、经历合一？", "如何避免让孩子或工作取代夫妻的连结？", "合一被打破时，如何重建？", "如何在金钱、教养上达成一致？", "夫妻如何成为彼此的属灵同伴？", "怎么分辨是「合一」还是「失去自己」？", "如何让神成为我们合一的中心？", "长期冷淡疏离，如何重燃合一？", "合一会为家庭带来什么能力？", "求神使我们合而为一，怎么祷告？"]}, {"c": "爱的语言与爱的存款（第五金环）", "qs": ["五种爱的语言是什么？如何找出配偶的？", "什么是婚姻里的「爱的存款」？", "我付出很多，对方却无感，为什么？", "如何用对方的爱语去爱他？", "怎么每天存入爱的存款？", "哪些行为是在提款、伤害关系？", "肯定的言语如何说得真诚？", "精心的时刻要怎么安排？", "服务的行動如何表达爱？", "接受礼物的爱语，如何实践？", "身体的接触对婚姻有多重要？", "对方的爱语跟我不同，如何跨越？", "如何用无己的心去付出爱语？", "爱的存款不足时，关系会怎样？", "如何在忙碌中仍持续存款？", "孩子出生后失去二人世界，怎么办？", "怎么让爱的表达成为习惯？", "如何一起约定经营爱的存款？", "单方面付出很久了，如何坚持？", "求神教我用对的方式爱配偶，怎么祷告？"]}, {"c": "冲突与修复（第六金环）", "qs": ["夫妻一定会有冲突吗？冲突是坏事吗？", "如何用「谦卑无己」处理冲突？", "吵架时如何不翻旧帐、不攻击人格？", "冷战很久了，如何跨出第一步和好？", "冲突当下情绪失控，如何喊暂停？", "如何做到「先处理心情、再处理事情」？", "谁先道歉，是不是就输了？", "如何真诚地认错与道歉？", "修复关系的具体步骤是什么？", "为什么修复比争赢更重要？", "如何避免把冲突升级？", "一再为同样的事吵，如何断根？", "如何在冲突后重建安全感？", "如何分辨是意见不同还是心结？", "对方不愿意谈，如何处理？", "怎么把冲突变成更认识彼此的机会？", "如何用『我讯息』表达而不指责？", "冲突后如何一起祷告修复？", "长期的伤害如何慢慢修复？", "求神教我们用爱化解冲突，怎么祷告？"]}, {"c": "委身与守约（第七金环）", "qs": ["婚姻的盟约跟合约有什么不同？", "什么是「彼此谦卑无己地委身守约」？", "感觉不再心動时，还要委身吗？", "如何在平淡中持守婚姻的委身？", "面对想放弃的念头，如何坚持守约？", "委身是靠意志力还是靠恩典？", "如何重新立约、更新我们的委身？", "为什么「委身」能带来安全感？", "如何在试探中守住婚姻的界線？", "另一半让我失望，还要委身吗？", "如何把委身化为每天的选择？", "委身和爱的感觉哪个先？", "如何一起守护婚姻不受侵蚀？", "誓言「无论贫富疾病」如何实践？", "怎么在困难季节仍不离不弃？", "如何让委身成为儿女的祝福榜样？", "面对外界诱惑，如何坚定守约？", "如何为持守委身彼此代祷？", "委身一生的秘诀是什么？", "求神坚固我们的委身，怎么祷告？"]}, {"c": "沟通与倾听", "qs": ["为什么我们一沟通就变吵架？", "如何学会真正地倾听？", "说话总是话中带刺，如何改？", "如何表达需要而不指责对方？", "另一半不爱讲话，如何打开心门？", "如何避免「你总是、你从来」的说法？", "怎么听懂对方情绪背后的需要？", "沟通时如何先同理再回应？", "如何安排固定的夫妻谈心时间？", "讯息、文字容易误会，如何沟通？", "如何在意见不同时好好讨论？", "怎么让对方感到被理解、被尊重？", "如何避免用沉默或冷战对抗？", "说了很多次对方还是不听，怎么办？", "如何用温柔的话回答止息怒气？", "怎么在对话中存入爱的存款？", "如何练习「慢慢地说、快快地听」？", "重大决定如何一起好好商量？", "如何在沟通中一起寻求神的心意？", "求神管理我们的舌头与耳朵，怎么祷告？"]}, {"c": "饶恕与医治", "qs": ["配偶深深伤害我，如何饶恕？", "饶恕是不是代表对方没错？", "如何饶恕又能保护自己不再受伤？", "口里说原谅，心里却放不下，怎么办？", "如何处理婚姻中累积的苦毒？", "过去的伤一再浮现，如何得医治？", "饶恕要饶恕几次？", "如何求神医治我内心的创伤？", "如何向曾伤害的配偶开口道歉？", "被背叛的伤，如何一步步走出来？", "饶恕之后如何重建信任？", "如何饶恕自己过去的过错？", "原生家庭的伤如何影响我的婚姻？", "如何不把旧伤投射到配偶身上？", "怎么一起为医治彼此祷告？", "饶恕的力量从哪里来？", "如何在饶恕中经历神的释放？", "对方没有悔意，我还要饶恕吗？", "如何让十字架的爱医治我们？", "求神帮助我饶恕与被医治，怎么祷告？"]}, {"c": "亲密与性", "qs": ["基督徒如何看待夫妻的性？", "性在婚姻中扮演什么角色？", "如何坦然谈论彼此的亲密需要？", "身心疲累影响亲密，怎么办？", "如何在忙碌中经营身体的亲密？", "对性有不同期待，如何协调？", "过去的伤害影响亲密，如何医治？", "如何让亲密不只是身体，也是心灵？", "如何营造安全、被爱的亲密氛围？", "生育、育儿后亲密减少，怎么办？", "如何用爱与尊重看待配偶的身体？", "面对诱惑与情欲，如何守圣洁？", "如何拒绝色情对婚姻的侵蚀？", "亲密关系冷淡，如何重燃？", "如何温柔表达自己的需要？", "身体软弱或疾病时，如何维持亲密？", "如何让亲密成为爱的存款？", "怎么在亲密中彼此无己、彼此成全？", "如何一起把婚姻的亲密献给神？", "求神更新我们的亲密关系，怎么祷告？"]}, {"c": "金钱与理财", "qs": ["夫妻如何建立合一的金钱观？", "为钱常常争吵，如何解决？", "如何一起规划家庭的收支与奉献？", "谁该管钱？如何分工又同心？", "面对负债压力，如何一起面对？", "消费习惯差很大，如何协调？", "十一奉献，夫妻不同意怎么办？", "如何在缺乏中一起学习知足？", "如何用信心面对财务焦虑？", "怎么分辨需要与想要？", "赚钱的動机该是什么？", "如何避免金钱成为家中的偶像？", "如何一起订立预算并彼此守约？", "一方隐藏消费（财务不忠），怎么办？", "如何教导孩子正确的金钱观？", "突然得财或损失，如何面对？", "投资、买房如何一起寻求神带领？", "如何用金钱祝福別人与神国？", "理财如何荣耀神？", "求神赐我们理财的智慧与合一，怎么祷告？"]}, {"c": "姻亲与原生家庭", "qs": ["如何处理与公婆的关系？", "另一半太听父母的话，怎么办？", "如何在孝顺父母与经营小家间平衡？", "姻亲介入我们的婚姻，如何设界線？", "如何「离开父母、与配偶连合」？", "原生家庭的模式如何影响我的婚姻？", "逢年过节两家如何协调？", "如何爱配偶的家人，即使不容易？", "婆媳问题中，丈夫该扮演什么角色？", "如何不把对原生家庭的不满发在配偶身上？", "如何一起建立自己小家的规則？", "父母比较、批评我们，如何回应？", "如何饶恕原生家庭带来的伤？", "与姻亲金钱往来如何拿捏？", "如何为双方父母的救恩祷告？", "夫妻如何在姻亲面前同一阵線？", "如何疗愈原生家庭的伤再进入婚姻？", "孩子与祖父母的教养冲突，怎么办？", "如何用无己的爱对待姻亲？", "求神赐我们智慧经营姻亲关系，怎么祷告？"]}, {"c": "教养儿女", "qs": ["夫妻如何在教养上同一阵線？", "教养理念不同，如何协调？", "如何从小带孩子认识耶稣？", "管教与慈爱如何拿捏？", "如何在家庭建立敬拜与亲子祷告？", "孩子叛逆顶嘴，怎么办？", "如何用榜样而非说教影响孩子？", "如何陪伴青春期的孩子？", "孩子沉迷手机，如何一起引导？", "夫妻如何不在孩子面前起争执？", "如何不把夫妻问题转嫁给孩子？", "如何一起为儿女的未来祷告？", "「带—陪—放」如何用在教养？", "如何培养孩子的品格与信心？", "孩子偏行己路，如何守望不放弃？", "如何避免以孩子为中心而忽略婚姻？", "如何教孩子看见爸妈相爱的榜样？", "单靠一方带信仰，如何同心？", "如何为孩子建立属神的家庭体系？", "求神赐我们教养的智慧，怎么祷告？"]}, {"c": "一起灵修祷告", "qs": ["夫妻如何开始一起灵修？", "另一半没兴趣一起读经，怎么办？", "如何建立同心祷告的习惯？", "一起灵修常常中断，如何坚持？", "夫妻同祷有什么特別的能力？", "如何为彼此的软弱代祷？", "怎么安排适合我们的灵修时间？", "如何一起把难处带到神面前？", "灵修时意见不同，如何处理？", "如何用圣经的话为婚姻祷告？", "怎么一起敬拜、经历神的同在？", "如何带领全家一起晨读321？", "属灵进度不同，如何彼此陪伴？", "如何在忙碌中仍守住共同的灵修？", "如何为儿女、家庭一起守望？", "一起灵修如何帮助夫妻合一？", "如何在灵修中彼此坦诚、认罪？", "怎么把321理念融入夫妻灵修？", "如何让祷告成为我们的呼吸？", "求神使我们成为同祷的伴侣，怎么祷告？"]}, {"c": "情绪与内心", "qs": ["情绪上来时，如何不伤害配偶？", "如何处理婚姻中的愤怒？", "常常焦虑不安，如何得平安？", "对配偶失望，心情低落，怎么办？", "如何把负面情绪带到神面前？", "如何分辨情绪与事实？", "心里的苦毒如何得释放？", "觉得不被理解、很孤单，怎么办？", "如何在情绪中仍「用心不用脑」？", "嫉妒、比较的心如何对付？", "过去的羞愧影响婚姻，如何面对？", "如何饶恕自己、接纳自己？", "如何陪伴情绪低落的另一半？", "对方情绪化时，我如何回应？", "如何不被对方的情绪牵着走？", "内心不平安时，如何回到神？", "如何让神的平安作我心里的主？", "情绪勒索如何辨识与面对？", "如何医治内心影响婚姻的伤？", "求神医治我的内心，怎么祷告？"]}, {"c": "未信或不同步的配偶", "qs": ["另一半还没信主，我该怎么做？", "如何用生命而非唠叨影响配偶？", "信仰不同步，如何和睦相处？", "如何为未信的配偶祷告？", "配偶反对我聚会，怎么办？", "如何在信仰与婚姻间取得平衡？", "如何尊重对方又持守信仰？", "孩子的信仰教育，如何与未信配偶协调？", "配偶信主却不冷不热，怎么办？", "如何不因信仰差异而论断对方？", "如何邀请配偶认识耶稣？", "属灵上感到孤单，如何倚靠神？", "如何让家庭气氛见证信仰之美？", "配偶的家人信別的宗教，如何相处？", "如何为信仰不同的婚姻求合一？", "何时该坚持、何时该柔软？", "如何把配偶的救恩完全交托神？", "怎么在等待中不失望、不放弃？", "如何以无己的爱赢得配偶的心？", "求神得着我配偶的心，怎么祷告？"]}, {"c": "危机与外遇的医治", "qs": ["婚姻走到谷底，还有盼望吗？", "面对外遇的伤害，如何得医治？", "被背叛后，如何重建信任？", "犯错的一方如何真诚悔改、挽回？", "如何在危机中不冲動做决定？", "如何处理心中的愤怒与报复念头？", "分居的念头来时，该怎么办？", "如何在破碎中抓住神的盼望？", "外遇后还能复合吗？如何开始？", "如何饶恕背叛我的配偶？", "受伤的一方如何一步步走出来？", "如何断开不正当的关系与试探？", "危机中如何寻求教会与辅导的帮助？", "如何避免把危机告诉不该告诉的人？", "如何为濒危的婚姻同心祷告？", "孩子受婚姻危机影响，如何保护？", "如何让神在绝境中動工、翻转？", "危机过后，如何重建更健康的婚姻？", "什么时候该寻求专业协助？", "求神拯救我濒危的婚姻，怎么祷告？"]}, {"c": "角色、界線与尊重", "qs": ["圣经怎么看夫妻的角色？", "「顺服」与「舍己爱」如何并行？", "如何彼此尊重而不彼此辖制？", "如何在婚姻中设立健康的界線？", "一方过度掌控，如何面对？", "如何分辨顺服与失去自我？", "丈夫如何以基督爱教会的方式爱妻子？", "妻子如何在尊重中扶持丈夫？", "家务、责任如何分工又同心？", "如何避免权力斗争？", "如何在差异中彼此欣赏、成全？", "如何拿捏亲密与个人空间？", "被轻视、不被尊重时，如何回应？", "如何用谦卑化解主导权之争？", "决策时如何彼此尊重、达成同心？", "如何不让工作或手机界線模糊了婚姻？", "如何建立彼此都同意的家庭规則？", "如何在角色中活出无己的爱？", "尊重如何成为爱的存款？", "求神教我们彼此尊重与成全，怎么祷告？"]}, {"c": "恩爱保鲜·同奔天路", "qs": ["如何让婚姻长久保鲜、不冷淡？", "结婚多年如何重燃爱火？", "如何安排属于两人的约会时光？", "如何持续为对方制造惊喜与感動？", "空巢期夫妻如何重新连结？", "如何在平凡日子里经营浪漫？", "如何一起立定共同的目标与梦想？", "如何一起服事、同奔天路？", "如何庆祝纪念日、数算神的恩典？", "如何在变老的过程中彼此珍惜？", "如何持续说出欣赏与感谢？", "如何让婚姻成为別人的祝福与见证？", "退休后如何规划有意义的婚姻生活？", "如何一起面对人生下半场的转变？", "怎么把每天的相处化为感恩？", "如何让孩子看见爸妈白首偕老的榜样？", "如何一起预备迎见主、走完天路？", "什么是「同作后嗣、承受生命之恩」？", "如何让我们的爱映照基督与教会？", "求神保守我们恩爱到白头，怎么祷告？"]}];
+  var UI={"name": "小智", "role": "婚姻陪伴員 · 陪你把焦点对准耶稣", "hello": "平安！我是小智 ✨ 321夫妻成长营的 AI 婚姻陪伴員。婚姻、夫妻相处、教养、饶恕、或任何与 321 理念相关的问题，都可以问我。先点下面的范畴，或直接打字问我，我会陪你把焦点对准耶稣 🙏", "placeholder": "向小智提问…", "send": "送出", "speak": "朗读", "typing": "小智正在回覆…", "noans": "小智一时想不出合适的话，但神的话永不落空，换个方式再问问看？", "offline": "小智暂时连不上線，请稍后再试 🙏\n別忘了——最好的同伴是圣灵与神的话，你随时可以直接向主倾心吐意，也可以和配偶一起祷告。", "note": "小智是 AI 婚姻陪伴員，不能代替圣灵、神的话与真实的属灵同伴 🙏", "voiceLbl": "朗读声音", "nativeVoice": "装置内建"};
+  var XZ_SYS="你是「小智」，是「321夫妻成长营 · 国度321空中团契」app 里的 AI 婚姻陪伴員，像一位陪伴夫妻同行的属灵朋友，谦卑、温暖、满有盼望与爱心。\n\n【你的界線与心态（最重要）】\n1. 你不是圣灵，也不能代替神；你绝不取代真实的牧者、属灵父母与属灵同伴。\n2. 你总是把夫妻引向耶稣、圣经、祷告与圣灵的引导，并鼓励他们与配偶好好对话、与属灵群体（235：属灵同伴、属灵父母儿女、属灵战友）连结。\n3. 焦点在耶稣，不在你，也不在对方或配偶自己。\n\n【321 理念，是你一切回应的根基】\n三个基础：耶稣是我的榜样、圣经是我的准則、圣灵是我的引导。两个核心：让耶稣作王、让耶稣得着一切的荣耀。一个目的：建立属神的体系（在家中建立属神的领域）。\n核心生命：无己（不再是我，乃是基督在我里面活）、谦卑胜过骄傲、先生命再关系后事工、用心靠圣灵不用脑靠自己。婚姻操练：920、235、七个得胜金环（选择对的生命、方向、步骤、连合、方法、修复、委身）。\n你要帮助夫妻看见：旧人有己、骄傲是婚姻问题的根源；借福音真理活出无己、谦卑，才能合一、得胜、反敗为胜，靠耶稣一定赢。\n\n【风格】\n一律用简体中文。引用圣经一律用《和合本》，且只在你有把握时引用、绝不杜撰经文或出处；不确定就如实说明或请对方自行查考。\n深入浅出、善用比喻、温暖有盼望，像牧者般亲切。回应精简（通常三到六句），给出一两个可立刻操练的小步骤，并常带出祷告的方向。\n\n【回答格式（重要，因为回答会被真人声音朗读出来）】\n1. 用自然、口语、可顺畅朗读的文字，像面对面说话。\n2. 绝不使用表格，不用直線「|」分欄；需要比较时用文字一句一句说清楚。\n3. 不用 Markdown：不用井号标题、不用星号粗体、不用大于号引言、不用条列符号。需要强调时直接用文字。\n4. 引用经文把书名章节写成可朗读的形式，例如「以弗所书五章二十五节」，避免只写「5:25」。\n5. 段落简短，多用句号分句，好读也好听。\n\n【安全】\n只在信仰、婚姻家庭、属灵成长、品格与生活应用、为人祷告、鼓励造就的范围内服事。\n遇到外遇、家暴、自我伤害或严重心理危机，除了属灵安慰，也要温柔鼓励寻求信任的牧者与专业协助，不假装专业、不下诊断、不论断人。\n若对方请你为他或他的婚姻祷告，可以用简短、合乎圣经的话为他祷告，并鼓励他也亲自向神敞开、与配偶一起祷告。";
+
+  function gS(k,d){ try{ return (typeof jget==="function")?jget(k,d):d; }catch(e){ return d; } }
+  function sS(k,v){ try{ if(typeof jset==="function") jset(k,v); }catch(e){} }
+
+  var st={open:false, topic:-1, busy:false, msgs:[], voice:gS("xz_voice",XZ_VOICE), engine:gS("tts_engine","azure")};
+  function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  /* ---------- 真人朗讀（Azure Worker，備援瀏覽器語音） ---------- */
+  var SIL="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAgD4AAAB9AAACABAAZGF0YQAAAAA=";
+  var tts={audio:null, unlocked:false, token:0, cache:{}, curBtn:null};
+  function ttsAudio(){ if(!tts.audio){ tts.audio=new Audio(); tts.audio.preload="auto";
+    try{ tts.audio.playsInline=true; tts.audio.setAttribute("playsinline",""); tts.audio.setAttribute("webkit-playsinline",""); }catch(_){} } return tts.audio; }
+  function ttsUnlock(){ if(tts.unlocked) return; try{ var a=ttsAudio(); a.src=SIL; var p=a.play(); if(p&&p.then){ p.then(function(){tts.unlocked=true;try{a.pause();}catch(_){}}).catch(function(){}); } else tts.unlocked=true; }catch(_){} }
+  function voiceName(){ var v=TTS_VOICES[st.voice]; return (v&&v.name)||TTS_VOICES[VOICE_ORDER[0]].name; }
+  function ttsChunks(text){ var t=String(text||"").replace(/\s+/g," ").trim(); if(!t) return [];
+    var enders="。！？；.!?;\n", out=[], buf="";
+    for(var i=0;i<t.length;i++){ buf+=t[i]; if(enders.indexOf(t[i])>=0 && buf.length>=48){ out.push(buf); buf=""; } }
+    if(buf.trim()) out.push(buf);
+    var fin=[]; out.forEach(function(s){ while(s.length>240){ fin.push(s.slice(0,240)); s=s.slice(240); } if(s) fin.push(s); });
+    return fin.length?fin:[t]; }
+  function ttsFetch(piece){
+    var key=voiceName()+"|"+piece;
+    if(tts.cache[key]) return Promise.resolve(tts.cache[key]);
+    return fetch(TTS_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({voice:voiceName(),rate:"+0%",sil:140,silc:140,sile:240,text:piece})})
+      .then(function(r){ if(!r.ok) throw new Error("TTS "+r.status); return r.blob(); })
+      .then(function(b){ var u=URL.createObjectURL(b); tts.cache[key]=u; return u; });
+  }
+  function speechFallback(text,onEnd){
+    try{ if(!("speechSynthesis" in window)){ onEnd&&onEnd(); return; }
+      window.speechSynthesis.cancel();
+      var u=new SpeechSynthesisUtterance(text); u.lang=SPEECH_LANG; u.rate=1;
+      u.onend=function(){ onEnd&&onEnd(); }; u.onerror=function(){ onEnd&&onEnd(); };
+      window.speechSynthesis.speak(u);
+    }catch(e){ onEnd&&onEnd(); }
+  }
+  function ttsStop(){ tts.token++; try{ if(tts.audio){ tts.audio.pause(); tts.audio.onended=null; tts.audio.onerror=null; } }catch(_){}
+    try{ if(window.speechSynthesis) window.speechSynthesis.cancel(); }catch(_){}
+    if(tts.curBtn){ tts.curBtn.classList.remove("playing"); tts.curBtn=null; } }
+  window.xzSpeak=function(text,btn){
+    if(tts.curBtn===btn){ ttsStop(); return; }              /* 再按一次＝停止 */
+    ttsStop(); ttsUnlock();
+    if(btn){ btn.classList.add("playing"); tts.curBtn=btn; }
+    var my=++tts.token;
+    if(st.engine==="native"){ speechFallback(text,function(){ if(my===tts.token){ if(btn)btn.classList.remove("playing"); tts.curBtn=null; } }); return; }
+    var chunks=ttsChunks(text), i=0, a=ttsAudio();
+    function done(){ if(my!==tts.token) return; if(btn)btn.classList.remove("playing"); tts.curBtn=null; }
+    function next(){
+      if(my!==tts.token) return;
+      if(i>=chunks.length){ done(); return; }
+      ttsFetch(chunks[i++]).then(function(url){
+        if(my!==tts.token) return;
+        a.src=url; a.onended=next;
+        a.onerror=function(){ if(my!==tts.token)return; /* 這段失敗→用瀏覽器念完剩下 */ speechFallback(chunks.slice(i-1).join(" "),done); };
+        var p=a.play(); if(p&&p.catch) p.catch(function(){ if(my===tts.token) speechFallback(chunks.slice(i-1).join(" "),done); });
+      }).catch(function(){ if(my!==tts.token)return; speechFallback(chunks.slice(i-1).join(" "),done); });
+    }
+    next();
+  };
+
+  /* ---------- 小智對話 ---------- */
+  function api(){ return XZ_ENDPOINT; }
+  function callXZ(){
+    st.busy=true; render();
+    var msgs=st.msgs.map(function(m){ return {role:m.role,content:m.text}; });
+    var ctrl=null, timer=null;
+    try{ ctrl=new AbortController(); timer=setTimeout(function(){ try{ctrl.abort();}catch(_){} },45000); }catch(_){}
+    fetch(api(),{method:"POST",headers:{"Content-Type":"application/json"},signal:ctrl?ctrl.signal:undefined,
+      body:JSON.stringify({model:XZ_MODEL,max_tokens:1000,system:XZ_SYS,messages:msgs})})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(timer) clearTimeout(timer);
+        var text="";
+        try{ if(d&&d.content&&d.content.length){ text=d.content.filter(function(x){return x.type==="text";}).map(function(x){return x.text;}).join("\n"); }
+             else if(typeof d.text==="string"){ text=d.text; } else if(d.reply){ text=d.reply; } }catch(_){}
+        if(!text) text=UI.noans;
+        st.msgs.push({role:"assistant",text:text}); st.busy=false; render(); scrollBtm();
+      })
+      .catch(function(){ if(timer) clearTimeout(timer);
+        st.msgs.push({role:"assistant",text:UI.offline}); st.busy=false; render(); scrollBtm(); });
+  }
+  window.xzAsk=function(t){ if(st.busy||!t) return; st.topic=-1; st.msgs.push({role:"user",text:t}); render(); scrollBtm(); callXZ(); };
+  window.xzSend=function(){ var i=document.getElementById("xz-input"); if(!i) return; var t=(i.value||"").trim(); if(!t||st.busy) return; i.value=""; xzAsk(t); };
+  window.xzTopic=function(ci){ st.topic=(st.topic===ci?-1:ci); render(); };
+  window.xzTopicAsk=function(ci,qi){ var q=XZ_TOPICS[ci]&&XZ_TOPICS[ci].qs[qi]; if(q) xzAsk(q); };
+  window.xzSetVoice=function(k){ st.voice=k; sS("xz_voice",k); if(k==="native"){ st.engine="native"; } else { st.engine="azure"; } sS("tts_engine",st.engine); render(); };
+  window.xzOpen=function(){ st.open=true; var m=document.getElementById("xz-mask"); if(m){ m.classList.add("on"); } render(); scrollBtm(); ttsUnlock(); };
+  window.xzClose=function(){ st.open=false; ttsStop(); var m=document.getElementById("xz-mask"); if(m) m.classList.remove("on"); };
+  function scrollBtm(){ setTimeout(function(){ var b=document.getElementById("xz-body"); if(b) b.scrollTop=b.scrollHeight; },60); }
+
+  function voiceBar(){
+    var btns=VOICE_ORDER.map(function(k){ var v=TTS_VOICES[k];
+      return '<button class="xz-vbtn'+(st.voice===k?' on':'')+'" onclick="xzSetVoice(\''+k+'\')">'+esc(v.label)+'</button>'; }).join("");
+    btns+='<button class="xz-vbtn'+(st.voice==="native"?' on':'')+'" onclick="xzSetVoice(\'native\')">'+esc(UI.nativeVoice)+'</button>';
+    return '<div class="xz-voicebar"><span class="vlbl">'+esc(UI.voiceLbl)+'</span>'+btns+'</div>';
+  }
+  function msgHTML(m,idx){
+    if(m.role==="user") return '<div class="xz-msg u"><div class="xz-mava">🙂</div><div class="xz-b">'+esc(m.text)+'</div></div>';
+    return '<div class="xz-msg a"><div class="xz-mava">✨</div><div><div class="xz-b">'+esc(m.text)+'</div>'
+      +'<button class="xz-speak" onclick="xzSpeak(this.getAttribute(\'data-t\'),this)" data-t="'+esc(m.text).replace(/"/g,"&quot;")+'">🔊 '+esc(UI.speak)+'</button></div></div>';
+  }
+  function render(){
+    var host=document.getElementById("xz-root"); if(!host) return;
+    var body="";
+    st.msgs.forEach(function(m,i){ body+=msgHTML(m,i); });
+    if(st.busy) body+='<div class="xz-typing">✨ '+esc(UI.typing)+'</div>';
+    var cats='<div class="xz-cats">'+XZ_TOPICS.map(function(t,ci){ return '<button class="xz-cat'+(st.topic===ci?' active':'')+'" onclick="xzTopic('+ci+')">'+esc(t.c)+'</button>'; }).join("")+'</div>';
+    var quicks="";
+    if(st.topic>=0&&XZ_TOPICS[st.topic]){
+      quicks='<div class="xz-quicks">'+XZ_TOPICS[st.topic].qs.map(function(q,qi){ return '<button class="xz-quick" onclick="xzTopicAsk('+st.topic+','+qi+')">'+esc(q)+'</button>'; }).join("")+'</div>';
+    }
+    var intro = st.msgs.length? "" : '<div class="xz-msg a"><div class="xz-mava">✨</div><div class="xz-b">'+esc(UI.hello)+'</div></div>';
+    host.innerHTML=
+      '<div class="xz-head"><div class="xz-ava">✨</div><div><div class="xz-hname">'+esc(UI.name)+'</div><div class="xz-hrole">'+esc(UI.role)+'</div></div><button class="xz-x" onclick="xzClose()">✕</button></div>'
+      +voiceBar()
+      +'<div class="xz-body" id="xz-body">'+intro+body+cats+quicks+'</div>'
+      +'<div class="xz-foot"><input id="xz-input" class="xz-input" type="text" placeholder="'+esc(UI.placeholder)+'" onkeydown="if(event.key===\'Enter\')xzSend()"><button class="xz-send" onclick="xzSend()">'+esc(UI.send)+'</button></div>'
+      +'<div class="xz-note">'+esc(UI.note)+'</div>';
+  }
+  function mount(){
+    if(document.getElementById("xz-fab")) return;
+    var fab=document.createElement("button"); fab.id="xz-fab"; fab.className="xz-fab";
+    fab.innerHTML='<span class="xzf-ic">✨</span><span>'+esc(UI.name)+'</span>';
+    fab.onclick=window.xzOpen; document.body.appendChild(fab);
+    var mask=document.createElement("div"); mask.id="xz-mask"; mask.className="xz-mask";
+    mask.onclick=function(e){ if(e.target===mask) window.xzClose(); };
+    var panel=document.createElement("div"); panel.className="xz-panel"; panel.id="xz-root";
+    mask.appendChild(panel); document.body.appendChild(mask);
+    render();
+  }
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",mount); else mount();
+})();
 
 </script>
 </body>
