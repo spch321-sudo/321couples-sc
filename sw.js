@@ -1,67 +1,101 @@
-/* 321 夫妻成長營 — 簡體中文版
-   部署網址：https://spch321-sudo.github.io/321couples-sc/
-   Service Worker v28：HTML 改為「網路優先」，改版後家人一開就是新版，不會再卡舊畫面。
-   快取名稱加上語言代碼（sc），避免三個語言版本（繁/簡/英）共用同一個 github.io
-   網域時，彼此的快取清除動作互相影響。
-   只快取成功的回應，避免偶發的失敗回應被誤存進快取。
-   ※ 每次改版只要把下面的版本號 +1（v27 → v28），並上傳這個檔案即可。 */
-const CACHE = 'couples321-sc-v27';
-const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-180.png', './icon-192.png', './icon-512.png', './icon-512-maskable.png'];
+/* ============================================================
+   晨读321（简体版）· Service Worker
+   - 离线可用：预先快取 App 外壳
+   - 内容更新：导览请求采「网路优先」，确保改版即时生效；离线时回退快取
+   - 有新版时：通知页面显示「✦ 已有新版本」更新提示
+   改版上线时，请把下面 CACHE 的版本号 +1（例如 v36 → v37），即可强制更新。
+   ── 注意：本团契三个 App（简体／繁体／英文）同在一个网域下，
+   　　浏览器的 Cache Storage 是整个网域共用。因此清理旧版时，
+   　　只清「自己前缀」（chendu321-zhs-）的快取，绝不误删另一个 App 的离线内容。
+   ============================================================ */
+var PREFIX  = "chendu321-zhs-";
+var VERSION = "v41-gx10170825";
+var CACHE   = PREFIX + VERSION;
 
-self.addEventListener('install', e => {
+var SHELL = [
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./favicon-32.png",
+  "./icon-180.png",
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-maskable-512.png"
+];
+
+/* 安装：预先快取外壳，并立即接手 */
+self.addEventListener("install", function (e) {
   self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).catch(() => {}));
-});
-
-self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k.indexOf('couples321-sc-') === 0 && k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.open(CACHE).then(function (c) {
+      /* 个别档案抓不到也不让整体失败 */
+      return Promise.all(SHELL.map(function (u) {
+        return c.add(u).catch(function () {});
+      }));
+    })
   );
 });
 
-self.addEventListener('message', e => {
-  if (e.data === 'SKIP_WAITING') self.skipWaiting();
+/* 启用：只清掉「本 App」的旧版快取；若确实是更新（先前有旧版），通知页面显示更新提示 */
+self.addEventListener("activate", function (e) {
+  e.waitUntil(
+    caches.keys().then(function (keys) {
+      var hadOld = keys.some(function (k) {
+        return k !== CACHE && k.indexOf(PREFIX) === 0;
+      });
+      return Promise.all(keys.map(function (k) {
+        if (k !== CACHE && k.indexOf(PREFIX) === 0) return caches.delete(k);
+      })).then(function () {
+        return self.clients.claim();
+      }).then(function () {
+        if (hadOld) {
+          return self.clients.matchAll({ type: "window" }).then(function (cl) {
+            cl.forEach(function (c) { c.postMessage({ type: "update-available" }); });
+          });
+        }
+      });
+    })
+  );
 });
 
-function isHTML(req) {
-  return req.mode === 'navigate' ||
-         (req.headers.get('accept') || '').indexOf('text/html') > -1;
-}
-
-/* 只快取「真的成功」的回應，避免把偶發的錯誤頁面存進快取 */
-function cachePut(req, res) {
-  if (res && res.ok) {
-    const copy = res.clone();
-    caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
-  }
-  return res;
-}
-
-self.addEventListener('fetch', e => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-
-  /* 外部連結（Zoom、晨讀321…）一律交給瀏覽器，不攔截 */
-  let url;
-  try { url = new URL(req.url); } catch (err) { return; }
+/* 拦截：仅处理同源 GET；POST（语音／AI 代理）与跨域请求一律放行不快取 */
+self.addEventListener("fetch", function (e) {
+  var req = e.request;
+  if (req.method !== "GET") return;
+  var url;
+  try { url = new URL(req.url); } catch (_) { return; }
   if (url.origin !== self.location.origin) return;
 
-  /* 網頁本身：網路優先 → 拿得到新版就用新版，離線才回快取 */
-  if (isHTML(req)) {
+  /* 导览（HTML）：网路优先 → 取得最新内容；离线时回退快取 */
+  var accept = req.headers.get("accept") || "";
+  if (req.mode === "navigate" || accept.indexOf("text/html") >= 0) {
     e.respondWith(
-      fetch(req).then(res => cachePut(req, res))
-        .catch(() => caches.match(req).then(hit => hit || caches.match('./index.html')))
+      fetch(req).then(function (res) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        return res;
+      }).catch(function () {
+        return caches.match(req).then(function (m) {
+          return m || caches.match("./index.html");
+        });
+      })
     );
     return;
   }
 
-  /* 圖示等靜態檔：先給快取（快），同時背景更新（新） */
+  /* 静态资源（图示、manifest 等）：快取优先 → 没有再上网并顺手快取 */
   e.respondWith(
-    caches.match(req).then(hit => {
-      const net = fetch(req).then(res => cachePut(req, res)).catch(() => hit);
-      return hit || net;
+    caches.match(req).then(function (m) {
+      return m || fetch(req).then(function (res) {
+        var copy = res.clone();
+        caches.open(CACHE).then(function (c) { c.put(req, copy); });
+        return res;
+      });
     })
   );
+});
+
+/* 允许页面要求立即套用新版 */
+self.addEventListener("message", function (e) {
+  if (e.data === "skipWaiting" || (e.data && e.data.type === "skipWaiting")) self.skipWaiting();
 });
